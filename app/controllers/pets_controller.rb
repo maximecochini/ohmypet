@@ -5,20 +5,19 @@ class PetsController < ApplicationController
     @pets = Pet.all
   end
 
-  def show
+   def new
+    @pet = Pet.new
   end
 
   def create
     @pet = Pet.new(pet_params)
-    @pet.save
     if @pet.save
       redirect_to pet_path(@pet)
-    else render :new
+    else render "new"
     end
   end
 
-  def new
-    @pet = Pet.new
+  def show
   end
 
   def edit
@@ -27,7 +26,7 @@ class PetsController < ApplicationController
   def update
     if @pet.update(pet_params)
       redirect_to pet_path(@pet)
-    else render :update
+    else render "update"
   end
 
   def destroy
