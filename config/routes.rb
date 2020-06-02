@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   resources :pets do
     resources :sittings, only [:new, :create]
     end
-  resources :show, only [:destroy, :edit, :update]
+  resources :sittings, only [:destroy, :edit, :update, :show]
 end
