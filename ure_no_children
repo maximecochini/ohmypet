@@ -1,0 +1,160 @@
+[33mcommit 40e3271e6e41439d96f94bb4bc8dca20e0c9a716[m[33m ([m[1;36mHEAD -> [m[1;32mcreate-sitting-model[m[33m, [m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m
+Merge: e1c7f89 f9bab9e
+Author: maximecochini <maxime.cochini@gmail.com>
+Date:   Tue Jun 2 12:24:12 2020 +0200
+
+    Merge pull request #6 from maximecochini/correct-routes
+    
+    Add : after only
+
+[33mcommit f9bab9e5baae8f8d114805e3d90728d2b8b47b07[m[33m ([m[1;31morigin/correct-routes[m[33m, [m[1;32mcorrect-routes[m[33m)[m
+Author: Maxime Cochini <maxime.cochini@gmail.com>
+Date:   Tue Jun 2 12:23:05 2020 +0200
+
+    Add : after only
+
+[33mcommit e1c7f892f384bccb9c0864e81cda5e064c618b64[m
+Merge: c47de4f 96cebb4
+Author: maximecochini <maxime.cochini@gmail.com>
+Date:   Tue Jun 2 12:18:46 2020 +0200
+
+    Merge pull request #5 from maximecochini/routes
+    
+    routes file modified
+
+[33mcommit c47de4f69f75aacf79f14a2a1bc7164545d0b9b4[m
+Merge: fd7f2c0 500c539
+Author: maximecochini <maxime.cochini@gmail.com>
+Date:   Tue Jun 2 12:14:21 2020 +0200
+
+    Merge pull request #1 from maximecochini/update-user-model
+    
+    Update model User & migrate
+
+[33mcommit 500c5398aa85658389411a4c9d84abe8b09ee02c[m
+Merge: 9f974e2 fd7f2c0
+Author: maximecochini <maxime.cochini@gmail.com>
+Date:   Tue Jun 2 12:12:26 2020 +0200
+
+    Merge branch 'master' into update-user-model
+
+[33mcommit fd7f2c0788ea31d0a05bfdc992fe845f1d0e3a94[m
+Merge: 045343b 1eb7426
+Author: maximecochini <maxime.cochini@gmail.com>
+Date:   Tue Jun 2 12:09:58 2020 +0200
+
+    Merge pull request #4 from maximecochini/routes
+    
+    Routes
+
+[33mcommit 045343b9793afcfc6fb299e8e70121e279d9d37e[m
+Merge: 9a92f88 824593f
+Author: maximecochini <maxime.cochini@gmail.com>
+Date:   Tue Jun 2 12:09:42 2020 +0200
+
+    Merge pull request #2 from maximecochini/create-model-pet
+    
+    Create model pet
+
+[33mcommit 96cebb4daa3aece638ebe8a9e76b777176bd6978[m
+Author: Jean Brisou <jean.brisou@kedgebs.com>
+Date:   Tue Jun 2 12:08:29 2020 +0200
+
+    routes file modified
+
+[33mcommit 1eb742624d0c50d091c07abdfc76a3685627024a[m
+Author: Jean Brisou <jean.brisou@kedgebs.com>
+Date:   Tue Jun 2 12:04:25 2020 +0200
+
+    routes file modified
+
+[33mcommit 824593f245023dabef1521fec774cbb5a9dcecc5[m
+Author: celine turchetti <celine.turchetti@wanadoo.fr>
+Date:   Tue Jun 2 12:03:02 2020 +0200
+
+    new column for pets table
+
+[33mcommit 49e8f01c8227c395361d1a3eb3383ba1771049f4[m
+Author: Jean Brisou <jean.brisou@kedgebs.com>
+Date:   Tue Jun 2 11:53:46 2020 +0200
+
+    routes modified
+
+[33mcommit f6e7fb8df37333a1e744ba57a1a16b320490cbbe[m
+Author: celine turchetti <celine.turchetti@wanadoo.fr>
+Date:   Tue Jun 2 11:42:06 2020 +0200
+
+    model pet done
+
+[33mcommit fa6fe2dc469f5ca42520e03d6ea52ec0172e42a4[m
+Author: Jean Brisou <jean.brisou@kedgebs.com>
+Date:   Tue Jun 2 11:41:07 2020 +0200
+
+    routes added
+
+[33mcommit 9f974e2c3025ce01dd4bf60a3a474cf1b416d2f2[m[33m ([m[1;31morigin/update-user-model[m[33m, [m[1;32mupdate-user-model[m[33m)[m
+Author: Maxime Cochini <maxime.cochini@gmail.com>
+Date:   Tue Jun 2 11:37:09 2020 +0200
+
+    Update model User & migrate
+
+[33mcommit d6bc36d76b238270360f88cd102079589a6a5754[m
+Merge: 8134312 9a92f88
+Author: celine turchetti <celine.turchetti@wanadoo.fr>
+Date:   Tue Jun 2 10:55:25 2020 +0200
+
+    Merge branch 'master' of github.com:maximecochini/ohmypet
+
+[33mcommit 9a92f88988c2f8343b839d155bb13876086b0dd6[m
+Author: Maxime Cochini <maxime.cochini@gmail.com>
+Date:   Tue Jun 2 10:54:51 2020 +0200
+
+    Corrected
+
+[33mcommit 8134312614e683e9d6133a5b91bd51628d43bbbd[m
+Author: celine turchetti <celine.turchetti@wanadoo.fr>
+Date:   Tue Jun 2 10:07:37 2020 +0200
+
+    .env
+
+[33mcommit fa47af78fe6265cd1845ca01beb55ef6478e1d5c[m
+Author: Jean Brisou <jean.brisou@kedgebs.com>
+Date:   Tue Jun 2 10:05:50 2020 +0200
+
+    Add dotenv - Protect my secret data in .env file
+
+[33mcommit 799050d228aecefb401f526559e21d7347606915[m
+Author: Jean Brisou <jean.brisou@kedgebs.com>
+Date:   Tue Jun 2 10:04:35 2020 +0200
+
+    Add dotenv - Protect my secret data in .env file
+
+[33mcommit 9797ff264f28947d7ffbaaa8a681a05b3c7a540c[m
+Author: Maxime Cochini <maxime.cochini@gmail.com>
+Date:   Tue Jun 2 09:10:02 2020 +0200
+
+    Added Devise, config it, generate its views, add shared folder with flashes
+
+[33mcommit 1185b0d4a0715f30ac3e233dbe2d8b18b25bf3cd[m
+Author: Maxime Cochini <maxime.cochini@gmail.com>
+Date:   Tue Jun 2 08:57:51 2020 +0200
+
+    Prepared CSS file system & CSS Grid code
+
+[33mcommit 3c9d9a60814db5da3992e4dd575865478d31087f[m
+Author: Maxime Cochini <maxime.cochini@gmail.com>
+Date:   Tue Jun 2 08:43:56 2020 +0200
+
+    Added Faker & Cloudinary
+
+[33mcommit e8c6ebd64d959ba7732eb7cc8f3e92d1c20e4c99[m
+Author: Maxime Cochini <maxime.cochini@gmail.com>
+Date:   Mon Jun 1 13:06:54 2020 +0200
+
+    Init commit
+
+[33mcommit 34ab27647cfcbf994085750bba90ae22c420c33c[m
+Author: Maxime Cochini <maxime.cochini@gmail.com>
+Date:   Mon Jun 1 13:04:57 2020 +0200
+
+    Initial commit with minimal template from https://github.com/lewagon/rails-templates

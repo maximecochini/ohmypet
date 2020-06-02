@@ -3,7 +3,7 @@ class Pet < ApplicationRecord
   SPECIES = ["dog", "cat", "rabbit", "donkey", "snake", "horse", "pig"]
 
   belongs_to :user
-  has_many :sittings
+  has_many :sittings, dependent: :destroy
 
   validates :name, presence: true
   validates :species, inclusion: { in: SPECIES }
@@ -13,5 +13,5 @@ class Pet < ApplicationRecord
   validates :city, presence: true
   validates :postcode, presence: true
   validates :country, presence: true
-
+  
 end
