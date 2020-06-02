@@ -28,7 +28,7 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
-# Front End Le Wagon Guide
+# Front End Le Wagon Gems
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 gem 'simple_form'
@@ -38,6 +38,9 @@ gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'mast
 
 # Cloudinary
 gem 'cloudinary'
+
+# Devise
+gem 'devise'
 
 group :development, :test do
   gem 'pry-byebug'
