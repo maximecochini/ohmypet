@@ -8,8 +8,8 @@ class User < ApplicationRecord
   has_many :sittings
 
   validates :name, presence: true
-  validates :email, presence: true, uniqueness: :true
-  validates :phone_number, uniqueness: :true, format: { with: // }
+  validates :email, presence: true, uniqueness: true
+  validates :phone_number, uniqueness: true
   validates :street_address, presence: true
   validates :city, presence: true
   validates :postcode, presence: true
