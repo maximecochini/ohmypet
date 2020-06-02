@@ -1,0 +1,16 @@
+<div class="containter col-4">
+  <div class="container">
+    <h2><%= "#{@pet.name}'s sitting" %></h2>
+      <br>
+      <h2><%= pet.reward_per_day %></h2>
+    <%= simple_form_for @user do |f| %>
+      <%= f.input :start_date, as: :date, html5: true %>
+      <%= f.input :end_date, as: :date, html5: true %>
+      <%= f.button :submit 'Book now' %>
+    <% end %>
+  <%= distance_of_time_in_words(start_date, end_date)  %>
+  <%= "#{pet.reward_per_day} X #{dose.ingredient.name}" %>
+  <%= "Total                #{distance_of_time_in_words}" %>
+
+  </div>
+</div>
