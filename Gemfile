@@ -42,6 +42,9 @@ gem 'cloudinary'
 # Devise
 gem 'devise'
 
+# Country Select
+gem 'country_select'
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'

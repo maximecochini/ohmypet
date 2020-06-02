@@ -1,0 +1,6 @@
+<h3>Sit for <%= @pet.name %>!</h3>
+<%= simple_form_for [@pet, @sitting] do |f| %>
+  <%= f.input :start_date, as: :date, html5: true %>
+  <%= f.input :end_date, as: :date, html5: true %>
+  <%= f.button :submit, class: "btn btn-primary" %>
+<% end %>

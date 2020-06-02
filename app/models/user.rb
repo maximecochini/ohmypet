@@ -7,7 +7,8 @@ class User < ApplicationRecord
   has_many :pets, dependent: :destroy
   has_many :sittings
 
-  validates :name, presence: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
   validates :email, presence: true, uniqueness: true
   validates :phone_number, uniqueness: true
   validates :street_address, presence: true
