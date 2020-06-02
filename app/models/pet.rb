@@ -9,6 +9,9 @@ class Pet < ApplicationRecord
   validates :species, inclusion: { in: SPECIES }
   validates :description, presence: true
   validates :reward_per_day, presence: true
-  validates :address, presence: true
+  validates :street_address, presence: true
+  validates :city, presence: true
+  validates :postcode, presence: true
+  validates :country, presence: true
 
 end
