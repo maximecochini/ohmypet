@@ -10,12 +10,15 @@
 require "date"
 
 # SEED VARIABLES
+users_qty = 12
 pets_possible_species = ["dog", "cat", "rabbit", "donkey", "snake", "horse", "pig"]
-pets_qty = 10
+pets_qty = 50
 pets_max_age = 15
 pets_min_max_reward = [10, 25]
 sittings_per_pet_max_qty = 3
-pet_users = User.all.sample(2)
+
+errors = 0
+# pet_users = User.all.sample(2)
 
 # FRONT END
 def main_separator
@@ -40,17 +43,54 @@ alt_separator
 puts "-- Cleaning Pets..."
 Pet.destroy_all
 puts "--- Done."
+alt_separator
+# puts "-- Cleaning Users..."
+# User.destroy_all
+# puts "--- Done."
+# alt_separator
 puts "\nDatabase is now clean."
+
+# GENERATE USERS
+# puts "Creating #{users_qty} users..."
+# users_qty.times do
+#   user = User.new
+#   user.email = Faker::Internet.safe_email
+#   user.password = 'password'
+#   user.first_name = Faker::Name.first_name
+#   user.last_name = Faker::Name.first_name
+#   user.phone_number = Faker::PhoneNumber.phone_number_with_country_code
+#   user.description = Faker::Hipster.sentence
+#   user.street_address = Faker::Address.street_address
+#   user.city = Faker::Address.city
+#   user.postcode = Faker::Address.zip
+#   user.country = Faker::Address.country
+#   if user.valid?
+#     user.save
+#   else
+#     p "Err: Can't save user."
+#     errors += 1
+#   end
+# end
+
 
 main_separator
 puts "Creating #{pets_qty} pets..."
 alt_separator
 
 pets_qty.times do
+  owner = User.all.sample
+  sitters = []
+  User.all.each do |sitter|
+    if sitter == owner
+      puts "Got owner out of sitters"
+    else
+      sitters << sitter
+    end
+  end
   pet = Pet.new
   pet.name = Faker::Creature::Cat.name
-  pet.user = pet_users[0]
-  puts "Creating #{pet.name}..."
+  pet.user = owner
+  puts "- Creating #{pet.name} (belongs to #{owner})..."
   pet.description = Faker::Creature::Dog.meme_phrase
   pet.species = pets_possible_species.sample
   pet.age = rand(1..pets_max_age)
@@ -60,8 +100,7 @@ pets_qty.times do
   pet.postcode = Faker::Address.zip
   pet.country = Faker::Address.country
   pet.save
-  p pet.valid?
-  p "-- #{pet.name} #{pet}\n\n"
+  p "-- #{pet.name} :\n#{pet}\n\n"
 
   alt_separator
 
@@ -73,7 +112,7 @@ pets_qty.times do
     sitting = Sitting.new
     p pet
     sitting.pet = pet
-    sitting.user = pet_users[1]
+    sitting.user = sitters.sample
     sitting.start_date = Date.today
     sitting.end_date = Date.today + 1
     sitting.message = Faker::Hipster.sentence
@@ -82,4 +121,4 @@ pets_qty.times do
   end
 end
 
-puts "END OF SEED - No errors."
+puts "END OF SEED - #{errors} error(s)."

@@ -8,10 +8,11 @@ class SittingsController < ApplicationController
 
   def create
     @sitting = Sitting.new(sitting_params)
+    @sitting.user = current_user
     @sitting.pet = @pet
 
     if @sitting.save
-      redirect_to sitting_path
+      redirect_to dashboard_path
     else
       render "show"
     end
@@ -24,7 +25,7 @@ class SittingsController < ApplicationController
 
   def destroy
     @sitting.destroy
-    redirect_to dashboard_page_path
+    redirect_to dashboard_path
   end
 
   private

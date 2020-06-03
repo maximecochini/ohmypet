@@ -1,0 +1,12 @@
+<%= simple_form_for @pet do |f| %>
+  <%= f.input :name %>
+  <%= f.input :species, as: :select, collection: Pet.get_species %>
+  <%= f.input :description %>
+  <%= f.input :reward_per_day %>
+  <%= f.input :street_address %>
+  <%= f.input :city %>
+  <%= f.input :postcode %>
+  <%= f.input :country %>
+
+  <%= f.button :submit, class: 'btn btn-primary' %>
+<% end %>

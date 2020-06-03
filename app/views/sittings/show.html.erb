@@ -1,10 +1,11 @@
 <div class="container">
+  <% total_days = @sitting.end_date - @sitting.start_date %>
   <h2><%= "#{@pet.name}'s sitting" %></h2>
   <ul>
-    <li><%= total pet.reward_per_day %></li>
-    <li><%= sitting.start_date %></li>
-    <li><%= sitting.end_date %></li>
-    <li><%= "#{pet.street_address}, #{pet.city}, #{pet.postcode}, #{pet.country} "></li>
+    <li>You will get <%= (@pet.reward_per_day * total_days).round %></li>
+    <li><%= @sitting.start_date %></li>
+    <li><%= @sitting.end_date %></li>
+    <li><%= "#{@pet.street_address}, #{@pet.city}, #{@pet.postcode}, #{@pet.country}" %></li>
   </ul>
 </div>
 <%= link_to "back to dashboard", dashboard_path, class: "btn btn-primary"  %>
