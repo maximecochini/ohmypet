@@ -1,0 +1,42 @@
+.omp_card-1-3, .omp_card-2-3 {
+  border-radius: 8px;
+  padding: 8px;
+  margin-top: 16px;
+  background-color: white;
+  border: solid 1px lightgrey;
+}
+.omp_card-column-sm, .omp_card-column-md, .omp_card-column-lg, .omp_card-column-xl {
+  border-right: lightgray solid 2px;
+  padding-right: 10px;
+  p {
+    margin-bottom: 0;
+  }
+  .omp_owner-name, .omp_pet-name {
+    font-family: $headers-font;
+  }
+}
+
+.omp_card-2-3 .omp_card-column-sm {
+  width: 10%;
+}
+.omp_card-2-3 .omp_card-column-md {
+  width: 20%;
+}
+.omp_card-2-3 .omp_card-column-lg {
+  width: 30%;
+  @media (max-width: 992px) {
+    width: 50%;
+  }
+}
+.omp_card-2-3 .omp_card-column-xl {
+  width: 40%;
+}
+.omp_card-1-3 .omp_card-column-sm {
+  width: 20%;
+}
+.omp_card-1-3 .omp_card-column-md {
+  width: 40%;
+}
+.omp_card-1-3 .omp_card-column-lg {
+  width: 50%;
+}
