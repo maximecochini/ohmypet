@@ -11,4 +11,6 @@ class Pet < ApplicationRecord
   validates :city, presence: true
   validates :postcode, presence: true
   validates :country, presence: true
+  validates :age, presence: true
+
 end

@@ -1,0 +1,22 @@
+.blob {
+  position: absolute;
+  z-index: 0;
+  overflow: visible;
+  padding-top: 10px;
+  * {
+    z-index: 0;
+  }
+}
+.blob-relative {
+  position: relative;
+  > :not(.blob) {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.blob-title-center {
+  width: 100%;
+  height: 400%;
+  top: -140%;
+}
