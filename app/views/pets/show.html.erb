@@ -1,24 +1,44 @@
-<div class="container">
-
-<div class="pet">
-  <div class="pet image">
-  </div>
-    <div class="pet information">
-      <h1><%="pet information" %></h1>
-        <ul>
-          <li><%="#{pet.name}"  %></li>
-          <li><%= "#{pet.species}" %></li>
-          <li><%=  "#{pet.description}"%></li>
-          <li><%= "#{pet.street_address}" %></li>
-          <li><%= "#{pet.city}" %></li>
-          <li><%= "#{pet.postcode}" %></li>
-          <li><%= "#{pet.country}" %></li>
-          <li><%= "#{pet.reward_per_day}" %></li>
-        </ul>
+<div class="container mt-4">
+  <div class="row my-2">
+    <div class="col-lg-3 text-center">
+      <img src="//placehold.it/250" class="mx-auto img-fluid img-circle d-block" alt="avatar">
+      <%= link_to "Change picture", pets_path, class: "btn btn-primary mt-4" %>
     </div>
-<%= link_to "back to all pets", pets_path, class: "btn btn-primary" %>
-<%= link_to "delete", class: "btn btn-primary" %>
-<%= link_to "edit", class: "btn btn-primary" %>
+    <div class="col-lg-6">
+      <h1 class="mb-3"><%= @pet.name  %></h1>
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Pet information</h2>
+          <p><%= @pet.species.capitalize %> - <%= @pet.age %> yr. old</p>
+          <h2>Description</h2>
+          <p><%= @pet.description%></p>
+        </div>
+        <div class="col-md-12">
+          <h2>Address</h2>
+          <p><%= @pet.street_address %>, <%= @pet.postcode %> <%= @pet.city %>, <%= @pet.country %></p>
+        </div>
+        <div class="col-md-12">
+          <h2>Owner information</h2>
+          <div class="d-flex flex-row align-items-start">
+            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle mr-4 mt-1", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <div>
+              <strong class="mb-0 d-block"><%= @pet.user.first_name.capitalize %> <%= @pet.user.last_name.capitalize %></strong>
+              <p><%= @pet.user.city.capitalize %> (<%= @pet.user.country.upcase %>)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container mt-4 pl-0">
+        <%= link_to "Back to pets", pets_path, class: "btn btn-primary" %>
+        <%= link_to "Edit", edit_pet_path(@pet), class: "btn btn-outline-secondary ml-2" %>
+        <%= link_to "Delete", pet_path(@pet), class: "btn btn-outline-danger ml-2", method: :delete, data: { confirm: "Are you sure?" } %>
+      </div>
+    </div>
+    <div class="col-lg-3 text-center">
+      <h2>Sit for <%= @pet.name.capitalize %>!</h2>
+      <p class="omp_reward omp_headers-font"><%= @pet.reward_per_day %> <i class="fas fa-cookie"></i> /day</p>
+      <%= render 'sittings/form' %>
+    </div>
   </div>
-
+  
 </div>

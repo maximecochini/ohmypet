@@ -10,8 +10,8 @@
     <h2>Loves you will sit for</h2>
   </div>
   <div class="omp_grid-2-3 omp_z-index-1 omp_p-relative">
-    <% @sittings.limit(5).each do |sitting| %>
-      <div class="omp_card-2-3 d-flex flex-row align-items-center justify-content-between">
+    <% @sittings.each do |sitting| %>
+      <div class="omp_card omp_card-2-3 d-flex flex-row align-items-center justify-content-between">
         <img src="https://i.f1g.fr/media/madame/1900x1900/sites/default/files/img/2014/12/grumpy-cat-un-chat-souvent-mis-en-scene.jpg" class="omp_card-avatar" alt="">
         <div class="omp_card-column-lg">
           <p class="omp_pet-name omp_headers-font"><%= sitting.pet.name.capitalize %></p>
@@ -20,18 +20,20 @@
         <div class="omp_card-column-xl">
           <div class="d-flex justify-content-between">
             <span class="omp_pet-badge badge badge-primary">BADGE</span>
-            <span class="omp_pet-likes"><i class="far fa-heart"></i> 4.8</span>
+            <span class="omp_pet-likes"><i class="fas fa-heart"></i> 4.8</span>
           </div>
           <span class="omp_sitting_dates omp_headers-font"><i class="fas fa-calendar"></i> <%= sitting.start_date.strftime('%a %d %b') %> - <%= sitting.end_date.strftime('%a %d %b') %></span>
         </div>
         <div>
-          <%= link_to pet_path(sitting.pet), class: "" do %>
+          <%= link_to pet_path(sitting.pet), class: "omp_light-peach omp_no-deco" do %>
             <i class="omp_card-large-i fas fa-paw"></i>
           <% end %>
-          <i class="omp_card-large-i fas fa-ellipsis-h"></i>
+          <%= link_to sitting_path(sitting), class: "omp_light-peach omp_no-deco" do %>
+            <i class="omp_card-large-i fas fa-ellipsis-h"></i>
+          <% end %>
         </div>
       </div>
-      <div class="omp_card-1-3 d-flex flex-row align-items-center justify-content-between">
+      <div class="omp_card omp_card-1-3 d-flex flex-row align-items-center justify-content-between">
         <img src="https://fr.web.img4.acsta.net/pictures/15/07/27/15/04/271855.jpg" class="omp_card-avatar" alt="">
         <div class="omp_card-column-lg">
           <p class="omp_owner-name omp_headers-font"><%= sitting.pet.user.first_name.capitalize %> <%= sitting.pet.user.last_name.capitalize %></p>
@@ -51,14 +53,14 @@
 
 <div class="container omp_mt-section">
   <div class="container omp_mt-section blob-relative">
-    <h2>Manage your team</h2>
+    <h2>Manage your pets</h2>
     <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" class="blob blob-title-left">
       <path fill="#FFD6E8" d="M46.4,-50.4C53,-39.7,46.5,-19.9,43.9,-2.6C41.3,14.6,42.6,29.3,35.9,40.8C29.3,52.3,14.6,60.7,-0.2,61C-15.1,61.2,-30.1,53.2,-45.6,41.7C-61,30.1,-76.8,15.1,-73.1,3.7C-69.4,-7.6,-46.2,-15.3,-30.7,-26C-15.3,-36.7,-7.6,-50.4,6.1,-56.5C19.9,-62.6,39.7,-61.1,46.4,-50.4Z" transform="translate(55 55)" />
     </svg>
   </div>
   <div class="omp_grid-2-3 omp_z-index-1 omp_p-relative">
-    <% @pets.order(:name).limit(5).each do |pet| %>
-      <div class="omp_card-2-3 d-flex flex-row align-items-center justify-content-between">
+    <% @pets.order(:name).each do |pet| %>
+      <div class="omp_card omp_card-2-3 d-flex flex-row align-items-center justify-content-between">
         <img src="https://i.f1g.fr/media/madame/1900x1900/sites/default/files/img/2014/12/grumpy-cat-un-chat-souvent-mis-en-scene.jpg" class="omp_card-avatar" alt="">
         <div class="omp_card-column-lg">
           <p class="omp_pet-name omp_headers-font"><%= pet.name.capitalize %></p>
@@ -73,20 +75,21 @@
         </div>
         <div>
           <%= link_to pet_path(pet), class: "" do %>
-            <i class="omp_card-large-i fas fa-paw"></i>
+            <i class="omp_card-large-i fas fa-paw omp_light-peach omp_no-deco"></i>
           <% end %>
-          <i class="omp_card-large-i fas fa-ellipsis-h"></i>
+          <i class="omp_card-large-i fas fa-ellipsis-h omp_light-peach omp_no-deco"></i>
         </div>
       </div>
       
       <% sitting = pet.sittings[0] %>
       <% if pet.sittings.empty? %>
-        <div class="omp_card-1-3 omp_card-1-3-empty">
+        <div class="d-flex omp_card omp_card-1-3 omp_card-empty text-center align-items-center justify-content-center omp_headers-font">
+          <div>Don't worry</div>
         </div>
 
         <% else %>
 
-        <div class="omp_card-1-3 d-flex flex-row align-items-center justify-content-between">
+        <div class="omp_card omp_card-1-3 d-flex flex-row align-items-center justify-content-between">
           <img src="https://fr.web.img4.acsta.net/pictures/15/07/27/15/04/271855.jpg" class="omp_card-avatar" alt="">
           <div class="omp_card-column-lg">
             <div class="d-flex justify-content-between">
@@ -103,6 +106,11 @@
           </div>
         </div>
       <% end %>
+    <% end %>
+  </div>
+  <div class="omp_grid-2-3 omp_z-index-1 omp_p-relative">
+    <%= link_to new_pet_path, class: "d-flex omp_card omp_card-2-3 omp_card-empty text-center align-items-center justify-content-center omp_headers-font" do %>
+        <div><i class="omp_card-large-i fas fa-plus"></i> Add a new pet</div>
     <% end %>
   </div>
 </div>

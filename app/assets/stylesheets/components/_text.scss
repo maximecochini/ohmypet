@@ -7,3 +7,19 @@
 .omp_body-font {
   font-family: $body-font;
 }
+
+.omp_reward {
+  font-size: 1.5em;
+  color: $peach;
+}
+
+a.omp_no-deco {
+  text-decoration: none;
+}
+
+a.omp_light-peach {
+  opacity: .7;
+  &:hover {
+    opacity: 1;
+  }
+}

@@ -19,6 +19,7 @@ class PetsController < ApplicationController
   end
 
   def show
+    @sitting = Sitting.new
   end
 
   def edit
@@ -28,13 +29,13 @@ class PetsController < ApplicationController
     if @pet.update(pet_params)
       redirect_to pet_path(@pet)
     else
-      render "update"
+      render "edit"
     end
   end
 
   def destroy
     @pet.destroy
-    redirect_to pets_path
+    redirect_to dashboard_path
   end
 
   private

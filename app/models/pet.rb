@@ -13,4 +13,8 @@ class Pet < ApplicationRecord
   validates :country, presence: true
   validates :age, presence: true
 
+  def self.get_species
+    SPECIES
+  end
+
 end
