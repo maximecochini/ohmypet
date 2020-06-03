@@ -1,0 +1,24 @@
+<div class="container">
+
+<div class="pet">
+  <div class="pet image">
+  </div>
+    <div class="pet information">
+      <h1><%="pet information" %></h1>
+        <ul>
+          <li><%="#{pet.name}"  %></li>
+          <li><%= "#{pet.species}" %></li>
+          <li><%=  "#{pet.description}"%></li>
+          <li><%= "#{pet.street_address}" %></li>
+          <li><%= "#{pet.city}" %></li>
+          <li><%= "#{pet.postcode}" %></li>
+          <li><%= "#{pet.country}" %></li>
+          <li><%= "#{pet.reward_per_day}" %></li>
+        </ul>
+    </div>
+<%= link_to "back to all pets", pets_path, class: "btn btn-primary" %>
+<%= link_to "delete", class: "btn btn-primary" %>
+<%= link_to "edit", class: "btn btn-primary" %>
+  </div>
+
+</div>
