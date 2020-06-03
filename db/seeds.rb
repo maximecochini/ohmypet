@@ -44,33 +44,33 @@ puts "-- Cleaning Pets..."
 Pet.destroy_all
 puts "--- Done."
 alt_separator
-# puts "-- Cleaning Users..."
-# User.destroy_all
-# puts "--- Done."
-# alt_separator
+puts "-- Cleaning Users..."
+User.destroy_all
+puts "--- Done."
+alt_separator
 puts "\nDatabase is now clean."
 
 # GENERATE USERS
-# puts "Creating #{users_qty} users..."
-# users_qty.times do
-#   user = User.new
-#   user.email = Faker::Internet.safe_email
-#   user.password = 'password'
-#   user.first_name = Faker::Name.first_name
-#   user.last_name = Faker::Name.first_name
-#   user.phone_number = Faker::PhoneNumber.phone_number_with_country_code
-#   user.description = Faker::Hipster.sentence
-#   user.street_address = Faker::Address.street_address
-#   user.city = Faker::Address.city
-#   user.postcode = Faker::Address.zip
-#   user.country = Faker::Address.country
-#   if user.valid?
-#     user.save
-#   else
-#     p "Err: Can't save user."
-#     errors += 1
-#   end
-# end
+puts "Creating #{users_qty} users..."
+users_qty.times do
+  user = User.new
+  user.email = Faker::Internet.safe_email
+  user.password = 'password'
+  user.first_name = Faker::Name.first_name
+  user.last_name = Faker::Name.first_name
+  user.phone_number = Faker::PhoneNumber.phone_number_with_country_code
+  user.description = Faker::Hipster.sentence
+  user.street_address = Faker::Address.street_address
+  user.city = Faker::Address.city
+  user.postcode = Faker::Address.zip
+  user.country = Faker::Address.country
+  if user.valid?
+    user.save
+  else
+    p "Err: Can't save user."
+    errors += 1
+  end
+end
 
 
 main_separator
