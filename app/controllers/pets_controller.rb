@@ -27,6 +27,7 @@ class PetsController < ApplicationController
     if @pet.update(pet_params)
       redirect_to pet_path(@pet)
     else render "update"
+    end
   end
 
   def destroy
