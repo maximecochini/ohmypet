@@ -1,5 +1,4 @@
 class Pet < ApplicationRecord
-
   SPECIES = ["dog", "cat", "rabbit", "donkey", "snake", "horse", "pig"]
 
   belongs_to :user
@@ -12,5 +11,4 @@ class Pet < ApplicationRecord
   validates :city, presence: true
   validates :postcode, presence: true
   validates :country, presence: true
-
 end
