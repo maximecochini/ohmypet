@@ -1,10 +1,10 @@
 <div class="container">
   <h2><%= "#{@pet.name}'s sitting" %></h2>
   <br>
-  <ul>
-    <li><%= "From #{sitting.start_date} to #{sitting.end_date}"%></li>
-    <li><%=  "You will make #{pet.reward_per_day} per day !" %></li>
-    <li><%=  " Pick up #{@pet.name} at #{pet.street_address}, #{pet.city}, #{pet.postcode}, #{pet.country}"%></li>
+    <li><%= total pet.reward_per_day %></li>
+    <li><%= sitting.start_date %></li>
+    <li><%= sitting.end_date %></li>
+    <li><%= "#{pet.street_address}, #{pet.city}, #{pet.postcode}, #{pet.country} "></li>
   </ul>
-  <%= link_to "back to dashboard", dashboard_path, class: "btn btn-primary"  %>
 </div>
+<%= link_to "back to dashboard", dashboard_path, class: "btn btn-primary"  %>
