@@ -13,7 +13,8 @@ class PetsController < ApplicationController
     @pet = Pet.new(pet_params)
     if @pet.save
       redirect_to pet_path(@pet)
-    else render "new"
+    else
+      render "new"
     end
   end
 
@@ -26,7 +27,8 @@ class PetsController < ApplicationController
   def update
     if @pet.update(pet_params)
       redirect_to pet_path(@pet)
-    else render "update"
+    else
+      render "update"
     end
   end
 
