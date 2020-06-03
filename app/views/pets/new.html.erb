@@ -5,9 +5,9 @@
 
       <%= simple_form_for @pet do |f| %>
         <%= f.input :name %>
-        <%= f.input :photo %>
+        <%= f.input :photo, %>
         <%= f.input :photo_cache, as: :hidden %>
-        <%= f.input :species %>
+        <%= f.association :pet, collection: Pet.activ.order(:species) %>
         <%= f.input :description %>
         <%= f.input :reward_per_day %>
         <%= f.input :street_address %>
