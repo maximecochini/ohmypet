@@ -23,3 +23,11 @@ body > .container:last-of-type {
 .omp_border_bottom {
   border-bottom: 1px solid #F5F5F5;
 }
+
+.omp_vl {
+  border-left: 2px solid lightgray;
+  height: 1.5em;
+  margin-left: 1em;
+  margin-right: 1em;
+  top: 0;
+}
