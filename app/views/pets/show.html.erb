@@ -1,44 +1,67 @@
+<% @page_title = @pet.name.capitalize %>
+
 <div class="container mt-4">
-  <div class="row my-2">
-    <div class="col-lg-3 text-center">
-      <img src="//placehold.it/250" class="mx-auto img-fluid img-circle d-block" alt="avatar">
-      <%= link_to "Change picture", pets_path, class: "btn btn-primary mt-4" %>
-    </div>
-    <div class="col-lg-6">
-      <h1 class="mb-3"><%= @pet.name  %></h1>
-      <div class="row">
-        <div class="col-md-12">
-          <h2>Pet information</h2>
-          <p><%= @pet.species.capitalize %> - <%= @pet.age %> yr. old</p>
-          <h2>Description</h2>
-          <p><%= @pet.description%></p>
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="//placehold.it/200" class="mx-auto img-fluid img-circle d-block" alt="avatar">
+
+        <div class="card-body omp_border_bottom py-1">
+          <a href="#" class="card-link">Card link</a>
+          <a href="#" class="card-link">Another link</a>
         </div>
-        <div class="col-md-12">
-          <h2>Address</h2>
-          <p><%= @pet.street_address %>, <%= @pet.postcode %> <%= @pet.city %>, <%= @pet.country %></p>
-        </div>
-        <div class="col-md-12">
-          <h2>Owner information</h2>
+
+        <div class="card-body pt-2 pb-0">
+          <h2 class="card-title omp_1_1em"><%= @pet.name.capitalize %>'s owner</h2>
           <div class="d-flex flex-row align-items-start">
             <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle mr-4 mt-1", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div>
               <strong class="mb-0 d-block"><%= @pet.user.first_name.capitalize %> <%= @pet.user.last_name.capitalize %></strong>
-              <p><%= @pet.user.city.capitalize %> (<%= @pet.user.country.upcase %>)</p>
+              <p><i class="fas fa-heart"></i> 3,9</p>
             </div>
           </div>
         </div>
-      </div>
-      <div class="container mt-4 pl-0">
-        <%= link_to "Back to pets", pets_path, class: "btn btn-primary" %>
-        <%= link_to "Edit", edit_pet_path(@pet), class: "btn btn-outline-secondary ml-2" %>
-        <%= link_to "Delete", pet_path(@pet), class: "btn btn-outline-danger ml-2", method: :delete, data: { confirm: "Are you sure?" } %>
+
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><%= @pet.user.description %></li>
+          <li class="list-group-item"><%= @pet.user.street_address %></li>
+          <li class="list-group-item"><%= @pet.user.city %>, <%= @pet.user.postcode %> (<%= @pet.user.country.upcase %>)</li>
+
+
+        </ul>
       </div>
     </div>
+
+    <div class="col-lg-6">
+      <div class="omp_mt-section blob-relative">
+        <h1 class="text-center"><%= @pet.name.capitalize %></h1>
+        <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" class="blob blob-title-center">
+          <path fill="#BAE6FF" d="M57.5,-46.8C69.6,-30.7,71,-7.1,62.9,8.8C54.9,24.8,37.4,33.1,21,39.3C4.7,45.4,-10.5,49.5,-29.6,46.2C-48.7,42.9,-71.6,32.2,-77.6,15.1C-83.6,-2.1,-72.8,-25.7,-57,-42.6C-41.3,-59.5,-20.6,-69.7,1,-70.5C22.7,-71.3,45.5,-62.9,57.5,-46.8Z" transform="translate(60 70)" />
+        </svg>
+      </div>
+      <div class="omp_mt-section p-4">
+        <h2 class="card-title" style="font-size: 1.5rem">Information</h2>
+        <p><%= @pet.description %></p>
+        <ul class="row row-cols-2">
+          <li class="col">age: 12</li>
+          <li class="col">age: 12</li>
+          <li class="col">age: 12</li>
+          <li class="col">age: 12</li>
+          <li class="col">age: 12</li>
+
+        </ul>
+      </div>
+
+    </div>
+
     <div class="col-lg-3 text-center">
-      <h2>Sit for <%= @pet.name.capitalize %>!</h2>
-      <p class="omp_reward omp_headers-font"><%= @pet.reward_per_day %> <i class="fas fa-cookie"></i> /day</p>
-      <%= render 'sittings/form' %>
+      <div class="card">
+        <div class="card-body">
+          <h2>Sit for <%= @pet.name.capitalize %>!</h2>
+          <p class="omp_reward omp_headers-font"><%= @pet.reward_per_day %> <i class="fas fa-cookie"></i> /day</p>
+          <%= render 'sittings/form' %>
+        </div>
+      </div>
     </div>
   </div>
-  
 </div>
