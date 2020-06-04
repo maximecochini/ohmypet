@@ -1,24 +1,51 @@
-<div class="container">
-  <h1><%= Pet.count %> pets to love in $$Marseille.</h1>
+<% @page_title = "Pets" %>
+
+<div class="container omp_mt-section blob-relative">
+  <h1 class="text-center">Browse Pets</h1>
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="blob blob-title-center">
+     <path fill="#A7F0BA" d="M44.6,-40.1C60.7,-28.6,78.5,-14.3,75.9,-2.6C73.3,9.1,50.3,18.3,34.3,22.6C18.3,26.9,9.1,26.4,-4.8,31.3C-18.8,36.1,-37.5,46.2,-48.6,41.9C-59.7,37.5,-63.2,18.8,-57.8,5.4C-52.4,-8,-38.2,-16,-27.1,-27.4C-16,-38.9,-8,-53.8,3.2,-57C14.3,-60.1,28.6,-51.5,44.6,-40.1Z" transform="translate(40 60)" />
+  </svg>
 </div>
 
-<div class="container d-flex justify-content-between">
-  <div class="col-3 border">
-    TEST
+<div class="container d-flex justify-content-between omp_mt-section pt-4">
+  <div class="col-3">
+    <div class="border-bottom">
+      <div class="pb-5">
+        <h3>Sort By</h3>
+        <ul>
+          <li class="omp_headers-font">Publish Date</li>
+          <li class="omp_headers-font">Cookies reward</li>
+        </ul>
+        </div>
+        <div class>
+        <h3>Filter</h3>
+        <ul>
+          <% Pet.get_species.each do |specie| %>
+            <li class="omp_headers-font"><%= specie %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   </div>
 
   <div class="col-9">
     <div>
-      <%= form_tag pets_path, method: :get, class: "input-group mb-3" do %>
+      <%= form_tag pets_path, method: :get, class: "input-group mb-3 omp_open-input" do %>
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1"><i class='fas fa-search'></i></span>
+        </div>
         <%= text_field_tag :query,
             params[:query],
             class: "form-control",
-            placeholder: "Find a pet"
+            placeholder: "search ..."
             %>
         <div class="input-group-append">
-          <%= submit_tag "Search", class: "btn btn-outline-secondary" %>
+          <span><%= submit_tag "Search", class: "btn pr-0" %> <i class="fas fa-chevron-right text-primary" style="font-size: .8em"></i></span>
         </div>
       <% end %>
+    </div>
+    <div class="container mt-0">
+      <p class="omp_headers-font"><%= @pets.count %> pets to love in $$Marseille.</p>
     </div>
 
     <div>

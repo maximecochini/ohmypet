@@ -1,4 +1,11 @@
 class Pet < ApplicationRecord
+  include PgSearch::Model
+  pg_search_scope :search_by_name_and_description,
+    against: [ :name, :description ],
+    using: {
+      tsearch: { prefix: true }
+    }
+
   SPECIES = ["dog", "cat", "rabbit", "donkey", "snake", "horse", "pig"]
 
   belongs_to :user
@@ -16,5 +23,4 @@ class Pet < ApplicationRecord
   def self.get_species
     SPECIES
   end
-
 end

@@ -45,6 +45,10 @@ gem 'devise'
 # Country Select
 gem 'country_select'
 
+gem 'pg_search', '~> 2.3.0'
+
+gem "algoliasearch-rails"
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'

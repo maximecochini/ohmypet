@@ -1,0 +1,15 @@
+.omp_open-input {
+  border-bottom: 2px solid $dark;
+  & .form-control {
+    border: none;
+  }
+  & .btn {
+    color: $peach;
+  }
+}
+
+.input-group-text {
+  background-color: white;
+  border: none;
+  padding: 1px;
+}
