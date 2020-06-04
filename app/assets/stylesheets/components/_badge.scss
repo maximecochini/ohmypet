@@ -1,3 +1,9 @@
 .omp_pet-badge {
-  line-height: inherit;
+  line-height: normal;
+  font-weight: 500;
+}
+
+.badge-muted{
+  background-color: #6C757D !important;
+  color: white !important;
 }
