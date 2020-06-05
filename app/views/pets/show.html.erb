@@ -73,6 +73,12 @@
             <div class="d-flex align-items-center justify-content-between">
               <h2 class="card-title" style="font-size: 1.5rem"><%= @pet.name %> has no reviews yet!</h2>
             </div>
+
+            <% if @pet.user != current_user %>
+              <%= render "reviews/new", pet: @pet, review: @review %>
+              <% else %>
+              <p>You can't review your own <%= @pet.species %>.</p>
+            <% end %>
           </div>
           <% else %>
             <div class="reviews">
@@ -93,7 +99,9 @@
               <% end %>
 
               <% if @pet.user != current_user %>
-              <%= render "reviews/new", pet: @pet, review: @review %>
+                <%= render "reviews/new", pet: @pet, review: @review %>
+                <% else %>
+                <p>You can't review your own <%= @pet.species %></p>
               <% end %>
 
             </div>
@@ -115,7 +123,7 @@
       <% if @pet.user == current_user %>
       <div class="card">
         <div class="card-body">
-        <h2 class="card-title" style="font-size: 1.5rem">Manage <%= @pet.name.capitalize %></h2>
+        <h2 class="card-title" style="font-size: 1.5rem"><%= @pet.name.capitalize %>'s Profile</h2>
         <%= link_to edit_pet_path(@pet), class: "btn btn-outline-primary" do %>
           <i class="fas fa-tools"></i> Edit
         <% end %>
