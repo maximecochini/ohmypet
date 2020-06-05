@@ -1,3 +1,20 @@
 li{
   list-style: none;
 }
+
+ul {
+  padding-inline-start: 0px;
+}
+
+li.omp_li-pet-info {
+  margin-bottom: 1.5rem;
+
+  & .badge {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  & i {
+    color: $primary;
+    margin-right: .5rem;
+  }
+}

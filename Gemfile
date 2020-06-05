@@ -45,9 +45,12 @@ gem 'devise'
 # Country Select
 gem 'country_select'
 
+# Search gems
 gem 'pg_search', '~> 2.3.0'
-
 gem "algoliasearch-rails"
+
+# Geocoder
+gem 'geocoder'
 
 group :development, :test do
   gem 'pry-byebug'

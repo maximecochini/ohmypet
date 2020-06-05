@@ -1,5 +1,6 @@
 class PetsController < ApplicationController
   before_action :set_pet, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @pets = Pet.all
@@ -27,6 +28,10 @@ class PetsController < ApplicationController
 
   def show
     @sitting = Sitting.new
+    @review = Review.new
+    if @pet.geocoded?
+      @markers = [{lat: @pet.latitude, lng: @pet.longitude}]
+    end
   end
 
   def edit

@@ -6,10 +6,14 @@ class Pet < ApplicationRecord
       tsearch: { prefix: true }
     }
 
+  geocoded_by :address
+  after_validation :geocode
+
   SPECIES = ["dog", "cat", "rabbit", "donkey", "snake", "horse", "pig"]
 
   belongs_to :user
   has_many :sittings, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 
   validates :name, presence: true
   validates :species, inclusion: { in: SPECIES }
@@ -22,5 +26,9 @@ class Pet < ApplicationRecord
 
   def self.get_species
     SPECIES
+  end
+
+  def address
+    [street_address, postcode, city, country].compact.join(', ')
   end
 end

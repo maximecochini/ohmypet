@@ -10,12 +10,13 @@
 require "date"
 
 # SEED VARIABLES
-users_qty = 12
+# users_qty = 12
 pets_possible_species = ["dog", "cat", "rabbit", "donkey", "snake", "horse", "pig"]
 pets_qty = 50
 pets_max_age = 15
 pets_min_max_reward = [10, 25]
 sittings_per_pet_max_qty = 3
+reviews_per_pet_max_rand_number = 15
 
 errors = 0
 # pet_users = User.all.sample(2)
@@ -40,37 +41,41 @@ puts "-- Cleaning Sittings..."
 Sitting.destroy_all
 puts "--- Done."
 alt_separator
+puts "-- Cleaning Reviews..."
+Review.destroy_all
+puts "--- Done."
+alt_separator
 puts "-- Cleaning Pets..."
 Pet.destroy_all
 puts "--- Done."
-alt_separator
-puts "-- Cleaning Users..."
-User.destroy_all
-puts "--- Done."
+# alt_separator
+# puts "-- Cleaning Users..."
+# User.destroy_all
+# puts "--- Done."
 alt_separator
 puts "\nDatabase is now clean."
 
 # GENERATE USERS
-puts "Creating #{users_qty} users..."
-users_qty.times do
-  user = User.new
-  user.email = Faker::Internet.safe_email
-  user.password = 'password'
-  user.first_name = Faker::Name.first_name
-  user.last_name = Faker::Name.first_name
-  user.phone_number = Faker::PhoneNumber.phone_number_with_country_code
-  user.description = Faker::Hipster.sentence
-  user.street_address = Faker::Address.street_address
-  user.city = Faker::Address.city
-  user.postcode = Faker::Address.zip
-  user.country = Faker::Address.country
-  if user.valid?
-    user.save
-  else
-    p "Err: Can't save user."
-    errors += 1
-  end
-end
+# puts "Creating #{users_qty} users..."
+# users_qty.times do
+#   user = User.new
+#   user.email = Faker::Internet.safe_email
+#   user.password = 'password'
+#   user.first_name = Faker::Name.first_name
+#   user.last_name = Faker::Name.first_name
+#   user.phone_number = Faker::PhoneNumber.phone_number_with_country_code
+#   user.description = Faker::Hipster.sentence
+#   user.street_address = Faker::Address.street_address
+#   user.city = Faker::Address.city
+#   user.postcode = Faker::Address.zip
+#   user.country = Faker::Address.country
+#   if user.valid?
+#     user.save
+#   else
+#     p "Err: Can't save user."
+#     errors += 1
+#   end
+# end
 
 
 main_separator
@@ -118,6 +123,23 @@ pets_qty.times do
     sitting.message = Faker::Hipster.sentence
     puts "-- #{sitting.user} for #{sitting.pet} (#{sitting.start_date} - #{sitting.end_date}):\n#{sitting.message}..."
     sitting.save
+  end
+
+  alt_separator
+
+  reviews_for_this_pet = rand(1..reviews_per_pet_max_rand_number)
+  puts "Creating #{reviews_for_this_pet} reviews for #{pet.name}..."
+  review_index = 0
+  reviews_for_this_pet.times do
+    puts "Review number #{review_index}..."
+    review = Review.new
+    p pet
+    review.pet = pet
+    review.user = sitters.sample
+    review.rating = rand(3..5)
+    review.content = Faker::Hipster.sentence
+    puts "-- Done a #{review.user} for #{review.pet}"
+    review.save
   end
 end
 

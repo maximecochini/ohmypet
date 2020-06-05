@@ -2,3 +2,12 @@
   font-size: 1.5rem;
   margin-right: 8px;
 }
+.omp_show-icon-on-hover {
+  transition: all ease .3s;
+  & i {
+    display: none;
+  }
+  &:hover i {
+    display: inline-block;
+  }
+}

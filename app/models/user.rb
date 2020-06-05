@@ -5,7 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :pets, dependent: :destroy
-  has_many :sittings
+  has_many :sittings, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 
   validates :first_name, presence: true
   validates :last_name, presence: true

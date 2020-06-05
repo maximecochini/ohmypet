@@ -31,3 +31,12 @@ body > .container:last-of-type {
   margin-right: 1em;
   top: 0;
 }
+
+.omp_padding-large {
+  padding: 0px 60px 40px;
+}
+
+#map {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 8px;
+}
