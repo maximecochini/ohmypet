@@ -1,4 +1,45 @@
-<div class="container">
-  <h1>Pages#home</h1>
-  <p>Find me in app/views/pages/home.html.erb</p>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), img=
+    <h1>A perfect <strong>sitter</strong> for <strong>your loving pets</strong>!</h1>
+    <p>Our fabulous pets are waiting for the perfect sitter!.</p>
+    <a class="btn omp_btn-rounded-hp" href="#">Discover</a>
+  </div>
 </div>
+
+<div class="container">
+  <div class="row row-cols-3 row-cols-sm-3 row-cols-xs-1 mt-5">
+    <div class="col mb-4">
+      <div class="card omp_bg-pets1">
+        <div class="card-body">
+          <div class="mb-2 d-flex align-items-center">
+            <h5 class="card-title d-inline-block mr-2 mb-0">Just arrived!</h5>
+          </div>
+          <p class="card-text">Discover our new offers</p>
+          <%= link_to "View", pets_path, class: "btn btn-primary omp_btn-rounded-only-br" %>
+        </div>
+      </div>
+    </div>
+    <div class="col mb-4">
+      <div class="card omp_bg-pets2">
+        <div class="card-body">
+          <div class="mb-2 d-flex align-items-center">
+            <h5 class="card-title d-inline-block mr-2 mb-0">Pet of the month!</h5>
+          </div>
+          <p class="card-text">Discover our favorite pet</p>
+          <%= link_to "View", pets_path, class: "btn btn-primary omp_btn-rounded-only-br" %>
+        </div>
+      </div>
+    </div>
+    <div class="col mb-4">
+      <div class="card omp_bg-pets3">
+        <div class="card-body">
+          <div class="mb-2 d-flex align-items-center">
+            <h5 class="card-title d-inline-block mr-2 mb-0">Create your pet!</h5>
+          </div>
+          <p class="card-text">Go go go</p>
+          <%= link_to "View", pets_path, class: "btn btn-primary omp_btn-rounded-only-br" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
