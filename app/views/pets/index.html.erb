@@ -13,15 +13,15 @@
       <div class="pb-5">
         <h3>Sort By</h3>
         <ul>
-          <li class="omp_headers-font">Publish Date</li>
-          <li class="omp_headers-font">Cookies reward</li>
+          <li class="omp_headers-font"><%= link_to "Publish Date", pets_path(order: 'created_at'), class: "omp_filter"%></li>
+          <li class="omp_headers-font"><%= link_to "Cookies reward", pets_path(order: 'reward_per_day'), class: "omp_filter"%></li>
         </ul>
         </div>
         <div class>
         <h3>Filter</h3>
         <ul>
           <% Pet.get_species.each do |specie| %>
-            <li class="omp_headers-font"><%= specie %></li>
+            <li class="omp_headers-font"><%= link_to specie, pets_path(:species=> specie), class: "omp_filter"%></li>
           <% end %>
         </ul>
       </div>
