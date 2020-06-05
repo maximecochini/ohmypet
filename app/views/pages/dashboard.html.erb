@@ -22,7 +22,7 @@
         <div class="omp_card-column-xl">
           <div class="d-flex justify-content-between">
             <span class="omp_pet-badge badge badge-primary">BADGE</span>
-            <span class="omp_pet-likes"><i class="fas fa-heart"></i> 4.8</span>
+            <% if sitting.pet.reviews.empty? == false %><span><i class="fas fa-heart"></i> <%= Review.where(pet_id: sitting.pet).average(:rating).round(1) %></span><% end %>
           </div>
           <span class="omp_sitting_dates omp_headers-font"><i class="fas fa-calendar"></i> <%= sitting.start_date.strftime('%a %d %b') %> - <%= sitting.end_date.strftime('%a %d %b') %></span>
         </div>
@@ -71,7 +71,7 @@
         <div class="omp_card-column-xl omp_d-none-mob">
           <div class="d-flex justify-content-between">
             <span class="omp_pet-badge badge badge-primary">BADGE</span>
-            <span class="omp_pet-likes"><i class="fas fa-heart"></i> 4.8</span>
+            <% if pet.reviews.empty? == false %><span><i class="fas fa-heart"></i> <%= Review.where(pet_id: pet).average(:rating).round(1) %></span><% end %>
           </div>
           <p class="omp_announce-title"><%= pet.description[0..30].capitalize %></p>
         </div>
@@ -97,7 +97,7 @@
             <div class="d-flex justify-content-between">
               <p class="omp_sitter-name omp_headers-font"><%= sitting.user.first_name.capitalize %></p>
               <div>
-                <span class="omp_pet-likes ml-2"><i class="fas fa-heart"></i> 4.8</span>
+                <span class="omp_pet-likes"><i class="fas fa-heart"></i> 4.8</span>
               </div>
             </div>
             <span class="omp_sitting_dates omp_headers-font"><i class="fas fa-calendar"></i> <%= sitting.start_date.strftime('%a %d %b') %></span>

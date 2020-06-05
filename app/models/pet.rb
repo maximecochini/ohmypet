@@ -13,6 +13,7 @@ class Pet < ApplicationRecord
 
   belongs_to :user
   has_many :sittings, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 
   validates :name, presence: true
   validates :species, inclusion: { in: SPECIES }

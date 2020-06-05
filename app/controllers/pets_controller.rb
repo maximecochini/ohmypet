@@ -28,6 +28,7 @@ class PetsController < ApplicationController
 
   def show
     @sitting = Sitting.new
+    @review = Review.new
     if @pet.geocoded?
       @markers = [{lat: @pet.latitude, lng: @pet.longitude}]
     end

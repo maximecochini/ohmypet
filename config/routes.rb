@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :pages
   resources :pets do
     resources :sittings, only: [:new, :create]
+    resources :reviews, only: [:create]
   end
   resources :sittings, only: [:destroy, :edit, :update, :show]
 end

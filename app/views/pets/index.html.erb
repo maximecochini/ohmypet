@@ -65,6 +65,7 @@
             </div>
             <div class="d-flex justify-content-between align-items-center card-footer text-muted omp_card-footer-no-padding">
               <span><%= pet.age %> yr. old</span>
+              <% if pet.reviews.empty? == false %><span><i class="fas fa-heart"></i> <%= Review.where(pet_id: pet).average(:rating).round(1) %></span><% end %>
               <%= link_to "View", pet_path(pet), class: "btn btn-primary omp_btn-rounded-only-br" %>
             </div>
           </div>

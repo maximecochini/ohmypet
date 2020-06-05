@@ -16,6 +16,7 @@ pets_qty = 50
 pets_max_age = 15
 pets_min_max_reward = [10, 25]
 sittings_per_pet_max_qty = 3
+reviews_per_pet_max_rand_number = 15
 
 errors = 0
 # pet_users = User.all.sample(2)
@@ -38,6 +39,10 @@ main_separator
 puts "Cleaning database..."
 puts "-- Cleaning Sittings..."
 Sitting.destroy_all
+puts "--- Done."
+alt_separator
+puts "-- Cleaning Reviews..."
+Review.destroy_all
 puts "--- Done."
 alt_separator
 puts "-- Cleaning Pets..."
@@ -118,6 +123,23 @@ pets_qty.times do
     sitting.message = Faker::Hipster.sentence
     puts "-- #{sitting.user} for #{sitting.pet} (#{sitting.start_date} - #{sitting.end_date}):\n#{sitting.message}..."
     sitting.save
+  end
+
+  alt_separator
+
+  reviews_for_this_pet = rand(1..reviews_per_pet_max_rand_number)
+  puts "Creating #{reviews_for_this_pet} reviews for #{pet.name}..."
+  review_index = 0
+  reviews_for_this_pet.times do
+    puts "Review number #{review_index}..."
+    review = Review.new
+    p pet
+    review.pet = pet
+    review.user = sitters.sample
+    review.rating = rand(3..5)
+    review.content = Faker::Hipster.sentence
+    puts "-- Done a #{review.user} for #{review.pet}"
+    review.save
   end
 end
 

@@ -1,4 +1,6 @@
 <% @page_title = @pet.name.capitalize %>
+<% reviews_count = @pet.reviews.count %>
+<% reviews_average = Review.where(pet_id: @pet).average(:rating).to_i || 0 %>
 
 <div class="container omp_mt-section blob-relative">
   <h1 class="text-center"><%= @pet.name.capitalize %></h1>
@@ -42,6 +44,7 @@
       <div class="card">
         <div class="card-body">
           <h2 class="card-title" style="font-size: 1.5rem">Information</h2>
+          <% if reviews_count > 0 %><p class="main-stars text-primary"><% reviews_average.times do %> <i class="fas fa-star"></i> <% end %></p><% end %>
           <% if @pet.user.description %><p><%= @pet.description %></p><% end %>
           <ul class="row row-cols-2">
             <li class="col omp_li-pet-info"><i class="fas fa-paw"></i> <strong><%= @pet.species.capitalize %></strong></li>
@@ -53,6 +56,7 @@
           </ul>
         </div>
       </div>
+
       <% if @pet.geocoded? %>
       <div class="card mt-4">
         <div id="map"
@@ -61,22 +65,66 @@
             data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
       </div>
       <% end %>
+
+      <div class="card mt-4">
+        <div class="card-body">
+          <% if @pet.reviews.empty? == true %>
+          <div class="reviews">
+            <div class="d-flex align-items-center justify-content-between">
+              <h2 class="card-title" style="font-size: 1.5rem"><%= @pet.name %> has no reviews yet!</h2>
+            </div>
+          </div>
+          <% else %>
+            <div class="reviews">
+              <div class="d-flex align-items-center justify-content-between mb-4">
+                <h2 class="card-title" style="font-size: 1.5rem"><%= reviews_count %> reviews</h2>
+              </div>
+              
+              <% @pet.reviews.each do |review| %>
+                <div class="review mb-4">
+                  <% if review.rating > 0 %>
+                    <p><% review.rating.times do %><i class="fas fa-star"></i><% end %></p>
+                  <% else %>
+                    <p><i class="fas fa-star-half-alt"></i></p>
+                  <% end %>
+                  <p><%= review.content %></p>
+                  
+                </div>
+              <% end %>
+
+              <% if @pet.user != current_user %>
+              <%= render "reviews/new", pet: @pet, review: @review %>
+              <% end %>
+
+            </div>
+        <% end %>
+        </div>
+      </div>
     </div>
 
     <div class="col-lg-3 text-center">
+      <% if @pet.user != current_user %>
       <div class="card">
         <div class="card-body">
-          <h2>Sit for <%= @pet.name.capitalize %>!</h2>
+          <h2 class="card-title" style="font-size: 1.5rem">Sit for <%= @pet.name.capitalize %>!</h2>
           <p class="omp_reward omp_headers-font"><%= @pet.reward_per_day %> <i class="fas fa-cookie"></i> /day</p>
           <%= render 'sittings/form' %>
         </div>
       </div>
-      <div class="card mt-4">
-        <%= link_to "$$EDIT", edit_pet_path(@pet), class: "btn btn-outline-primary" %>
+      <% end %>
+      <% if @pet.user == current_user %>
+      <div class="card">
+        <div class="card-body">
+        <h2 class="card-title" style="font-size: 1.5rem">Manage <%= @pet.name.capitalize %></h2>
+        <%= link_to edit_pet_path(@pet), class: "btn btn-outline-primary" do %>
+          <i class="fas fa-tools"></i> Edit
+        <% end %>
+        <%= link_to pet_path(@pet), class: "btn btn-outline-danger", method: :delete, data: { confirm: "Are you sure?" } do %>
+          <i class="fas fa-trash"></i> Delete
+        <% end %>
+        </div>
       </div>
-      <div class="card mt-4">
-        <%= link_to "$$DELETE", edit_pet_path(@pet), class: "btn btn-outline-danger" %>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>

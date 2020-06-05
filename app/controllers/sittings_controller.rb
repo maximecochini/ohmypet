@@ -31,7 +31,7 @@ class SittingsController < ApplicationController
   private
 
   def sitting_params
-    params.require(:sitting).permit(:start_date, :end_date)
+    params.require(:sitting).permit(:start_date, :end_date, :message)
   end
 
   def set_pet
