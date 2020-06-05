@@ -21,6 +21,10 @@ class SittingsController < ApplicationController
   def show
     @pet = @sitting.pet
     @owner = @pet.user
+    
+    if @pet.geocoded?
+      @markers = [{lat: @pet.latitude, lng: @pet.longitude}]
+    end
   end
 
   def destroy

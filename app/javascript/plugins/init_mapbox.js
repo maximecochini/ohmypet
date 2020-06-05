@@ -15,13 +15,9 @@ const initMapbox = () => {
         .setLngLat([marker.lng, marker.lat])
         .addTo(map);
     });
-    fitMapToMarkers(map, markers);
+    const marker = markers[0]
+    map.setCenter([marker.lng, marker.lat]).setZoom(15);
   }
-};
-
-const fitMapToMarkers = (map, markers) => {
-  const bounds = new mapboxgl.LngLatBounds();
-  markers.forEach(marker => map.setCenter([marker.lng, marker.lat]).setZoom(15));
 };
 
 export { initMapbox };

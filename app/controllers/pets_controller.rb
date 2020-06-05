@@ -7,6 +7,8 @@ class PetsController < ApplicationController
       @pets = Pet.search_by_name_description_species_and_reward_per_day(params[:query])
     elsif params[:species]
       @pets = Pet.where(species: params[:species])
+    elsif params[:order] == 'created_at'
+      @pets = Pet.all.order(created_at: :desc)
     elsif params[:order]
       @pets = Pet.all.order(params[:order])
     else

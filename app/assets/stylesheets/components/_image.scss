@@ -7,17 +7,35 @@ img.omp_card-avatar {
 
 
 .omp_bg-big-banner {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.9)), url("https://source.unsplash.com/600x600/?cat");
+  background-size: cover;
+  background-position: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url("https://images.pexels.com/photos/46024/pexels-photo-46024.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
 }
 
 .omp_bg-pets1 {
+  background-size: cover;
+  background-position: center;
   background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.9)), url("https://source.unsplash.com/600x600/?pets");
 }
 
 .omp_bg-pets2 {
+  background-size: cover;
+  background-position: center;
   background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.9)), url("https://source.unsplash.com/600x600/?pet");
 }
 
 .omp_bg-pets3 {
+  background-size: cover;
+  background-position: center;
   background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.9)), url("https://source.unsplash.com/600x600/?animals");
+}
+
+.omp_bg-pets1, .omp_bg-pets2, .omp_bg-pets3 {
+  border-color: lightgray;
+  & h5 {
+    color: white;
+  }
+  & p {
+    color: white;
+  }
 }
