@@ -8,15 +8,19 @@
 
 # REQUIRES
 require "date"
+require 'open-uri'
+require 'json'
 
 # SEED VARIABLES
-# users_qty = 12
-pets_possible_species = ["dog", "cat", "rabbit", "donkey", "snake", "horse", "pig"]
-pets_qty = 50
+# users_qty = 9
+pets_possible_species = Pet.get_species
+pets_qty = 45
 pets_max_age = 15
 pets_min_max_reward = [10, 25]
 sittings_per_pet_max_qty = 3
 reviews_per_pet_max_rand_number = 15
+
+unsplash_base = "https://source.unsplash.com/600x600/?"
 
 errors = 0
 # pet_users = User.all.sample(2)
@@ -48,11 +52,11 @@ alt_separator
 puts "-- Cleaning Pets..."
 Pet.destroy_all
 puts "--- Done."
-# alt_separator
+alt_separator
 # puts "-- Cleaning Users..."
 # User.destroy_all
 # puts "--- Done."
-alt_separator
+# alt_separator
 puts "\nDatabase is now clean."
 
 # GENERATE USERS
@@ -69,6 +73,7 @@ puts "\nDatabase is now clean."
 #   user.city = Faker::Address.city
 #   user.postcode = Faker::Address.zip
 #   user.country = Faker::Address.country
+#   user.photo.attach(io: URI.open("#{unsplash_base}human"), filename: "#{user.first_name.gsub(" ","_")}-#{user.last_name.gsub(" ","_")}_photo.jpg", content_type: "image/jpg")
 #   if user.valid?
 #     user.save
 #   else
@@ -95,7 +100,7 @@ pets_qty.times do
   pet = Pet.new
   pet.name = Faker::Creature::Cat.name
   pet.user = owner
-  puts "- Creating #{pet.name} (belongs to #{owner})..."
+  puts "- Creating #{pet.name} (belongs to #{owner.first_name} #{owner.last_name})..."
   pet.description = Faker::Creature::Dog.meme_phrase
   pet.species = pets_possible_species.sample
   pet.age = rand(1..pets_max_age)
@@ -104,6 +109,7 @@ pets_qty.times do
   pet.city = Faker::Address.city
   pet.postcode = Faker::Address.zip
   pet.country = Faker::Address.country
+  pet.photo.attach(io: URI.open("#{unsplash_base}#{pet.species}"), filename: "#{owner.first_name.gsub(" ","_")}-#{pet.name.gsub(" ","_")}_photo.jpg", content_type: "image/jpg")
   pet.save
   p "-- #{pet.name} :\n#{pet}\n\n"
 

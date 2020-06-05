@@ -1,11 +1,92 @@
-<div class="container">
-  <% total_days = @sitting.end_date - @sitting.start_date %>
-  <h2><%= "#{@pet.name}'s sitting" %></h2>
-  <ul>
-    <li>You will get <%= (@pet.reward_per_day * total_days).round %></li>
-    <li><%= @sitting.start_date %></li>
-    <li><%= @sitting.end_date %></li>
-    <li><%= "#{@pet.street_address}, #{@pet.city}, #{@pet.postcode}, #{@pet.country}" %></li>
-  </ul>
+<% @page_title = @pet.name.capitalize + "'s sitting" %>
+<% total_days = (@sitting.end_date - @sitting.start_date).round %>
+<% reviews_count = @pet.reviews.count %>
+<% reviews_average = Review.where(pet_id: @pet).average(:rating).to_i || 0 %>
+
+<div class="container omp_mt-section blob-relative">
+  <h1 class="text-center"><%= @pet.name.capitalize %>'s sitting</h1>
+  <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" class="blob blob-title-center">
+    <path fill="#BAE6FF" d="M57.5,-46.8C69.6,-30.7,71,-7.1,62.9,8.8C54.9,24.8,37.4,33.1,21,39.3C4.7,45.4,-10.5,49.5,-29.6,46.2C-48.7,42.9,-71.6,32.2,-77.6,15.1C-83.6,-2.1,-72.8,-25.7,-57,-42.6C-41.3,-59.5,-20.6,-69.7,1,-70.5C22.7,-71.3,45.5,-62.9,57.5,-46.8Z" transform="translate(60 70)" />
+  </svg>
 </div>
-<%= link_to "back to dashboard", dashboard_path, class: "btn btn-primary"  %>
+
+<div class="container omp_mt-section pt-4">
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="card">
+        <img class="card-img-top" src="<%= cl_image_path @pet.photo.key, height: 400, width: 400 %>" class="mx-auto img-fluid img-circle d-block" alt="avatar">
+
+        <% if @pet.user == current_user %>
+          <div class="card-body omp_border_bottom py-2">
+            <%= link_to "CHANGE PHOTO", edit_pet_path(@pet), class: "btn btn-outline-primary card-link w-100" %>
+          </div>   
+        <% end %>
+        
+        <div class="card-body pt-2 pb-0">
+          <h2 class="card-title omp_1_1em"><%= @pet.name.capitalize %>'s owner</h2>
+          <div class="d-flex flex-row align-items-start">
+            <%= cl_image_tag @pet.user.photo.key, class: "avatar dropdown-toggle mr-4 mt-1", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <div>
+              <strong class="mb-0 d-block"><%= @pet.user.first_name.capitalize %> <%= @pet.user.last_name.capitalize %></strong>
+              <p><i class="fas fa-heart"></i> 3,9</p>
+            </div>
+          </div>
+        </div>
+
+        <ul class="list-group list-group-flush">
+          <% if @pet.user.description %><li class="list-group-item"><%= @pet.user.description %></li><% end %>
+          <li class="list-group-item"><%= @pet.user.street_address %></li>
+          <li class="list-group-item"><%= @pet.user.city %>, <%= @pet.user.postcode %> (<%= @pet.user.country.upcase %>)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title" style="font-size: 1.5rem">Sitting</h2>
+          <p class="omp_sitting_dates omp_headers-font"><i class="fas fa-calendar text-primary"></i> <%= @sitting.start_date.strftime('%a %d %b') %> - <%= @sitting.end_date.strftime('%a %d %b') %> (<%= total_days %> days)</p>
+          <% if @sitting.message %><p>Message: <%= @sitting.message %></p><% end %>
+        </div>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-body">
+          <h2 class="card-title" style="font-size: 1.5rem">Information about <%= @pet.name %></h2>
+          <% if reviews_count > 0 %><p class="main-stars"><% reviews_average.times do %> <i class="fas fa-star text-primary"></i> <% end %> (<%= reviews_count %>)</p><% end %>
+          <% if @pet.description %><p><%= @pet.description %></p><% end %>
+          <ul class="row row-cols-2">
+            <li class="col omp_li-pet-info"><i class="fas fa-paw"></i> <strong><%= @pet.species.capitalize %></strong></li>
+            <li class="col omp_li-pet-info"><i class="fas fa-map-marker-alt"></i> <strong><%= @pet.street_address %></strong></li>
+            <li class="col omp_li-pet-info"><i class="fas fa-baby"></i> <strong><%= @pet.age %></strong> yr. old</li>
+            <li class="col omp_li-pet-info"><i class="fas fa-city"></i> <strong><%= @pet.city %></strong></li>
+            <li class="col omp_li-pet-info"><i class="fas fa-bolt"></i> Sitted by <strong><%= Sitting.where(pet_id: @pet.id).count %></strong> users!</li>
+            <li class="col omp_li-pet-info"><i class="fas fa-globe-europe"></i> <strong><%= @pet.country.upcase %></strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <% if @pet.geocoded? %>
+      <div class="card mt-4">
+        <div id="map"
+            style="width: 100%; height: 300px;"
+            data-markers="<%= @markers.to_json %>"
+            data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+      </div>
+      <% end %>
+    </div>
+
+    <div class="col-lg-3 text-center">
+      <div class="card">
+        <div class="card-body">
+          <% if @pet.user != current_user %>
+            <h2 class="card-title" style="font-size: 1.5rem">You will get</h2>
+          <% else %>
+            <h2 class="card-title" style="font-size: 1.5rem"><%= @sitting.user %> will get</h2>
+          <% end %>
+          <p class="omp_reward omp_headers-font"><%= (@pet.reward_per_day * total_days).round %> <i class="fas fa-cookie"></i></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

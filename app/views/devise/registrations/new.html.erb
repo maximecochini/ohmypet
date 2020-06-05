@@ -39,6 +39,7 @@
     <%= f.input :country,
                 required: true,
                 input_html: { autocomplete: "country-name" } %>
+    <%= f.input :photo, required: true, as: :file %>
   </div>
 
   <div class="form-actions">

@@ -54,7 +54,7 @@
         <div class="col mb-4">
           <div class="card">
             <%= link_to pet_path(pet) do %>
-              <img src="https://i.f1g.fr/media/madame/1900x1900/sites/default/files/img/2014/12/grumpy-cat-un-chat-souvent-mis-en-scene.jpg" class="card-img-top" alt="...">
+              <img src="<%= cl_image_path pet.photo.key, height: 400, width: 400 %>" class="card-img-top" alt="...">
             <% end %>
             <div class="card-body">
               <div class="mb-2 d-flex align-items-center">
