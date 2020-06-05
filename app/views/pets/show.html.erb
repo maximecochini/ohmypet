@@ -31,7 +31,7 @@
         </div>
 
         <ul class="list-group list-group-flush">
-          <li class="list-group-item"><%= @pet.user.description %></li>
+          <% if @pet.user.description %><li class="list-group-item"><%= @pet.user.description %></li><% end %>
           <li class="list-group-item"><%= @pet.user.street_address %></li>
           <li class="list-group-item"><%= @pet.user.city %>, <%= @pet.user.postcode %> (<%= @pet.user.country.upcase %>)</li>
         </ul>
@@ -42,7 +42,7 @@
       <div class="card">
         <div class="card-body">
           <h2 class="card-title" style="font-size: 1.5rem">Information</h2>
-          <p><%= @pet.description %></p>
+          <% if @pet.user.description %><p><%= @pet.description %></p><% end %>
           <ul class="row row-cols-2">
             <li class="col omp_li-pet-info"><i class="fas fa-paw"></i> <strong><%= @pet.species.capitalize %></strong></li>
             <li class="col omp_li-pet-info"><i class="fas fa-map-marker-alt"></i> <strong><%= @pet.street_address %></strong></li>
@@ -53,13 +53,14 @@
           </ul>
         </div>
       </div>
+      <% if @pet.geocoded? %>
       <div class="card mt-4">
         <div id="map"
             style="width: 100%; height: 300px;"
             data-markers="<%= @markers.to_json %>"
             data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
       </div>
-
+      <% end %>
     </div>
 
     <div class="col-lg-3 text-center">
