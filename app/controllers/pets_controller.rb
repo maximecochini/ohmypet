@@ -3,9 +3,12 @@ class PetsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @pets = Pet.all
     if params[:query].present?
-      @pets = Pet.search_by_name_and_description(params[:query])
+      @pets = Pet.search_by_name_description_species_and_reward_per_day(params[:query])
+    elsif params[:species]
+      @pets = Pet.where(species: params[:species])
+    elsif params[:order]
+      @pets = Pet.all.order(params[:order])
     else
       @pets = Pet.all
     end

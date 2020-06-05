@@ -1,7 +1,7 @@
 class Pet < ApplicationRecord
   include PgSearch::Model
-  pg_search_scope :search_by_name_and_description,
-    against: [ :name, :description ],
+  pg_search_scope :search_by_name_description_species_and_reward_per_day,
+    against: [:name, :description, :species, :reward_per_day],
     using: {
       tsearch: { prefix: true }
     }
