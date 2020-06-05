@@ -34,3 +34,8 @@ a.omp_filter {
   color: black;
 }
 
+ .omp_headers-font-hover {
+   &:hover a {
+     color: $primary;
+   }
+ }

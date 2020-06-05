@@ -9,19 +9,19 @@
 
 <div class="container d-flex justify-content-between omp_mt-section pt-4">
   <div class="col-3">
-    <div class="border-bottom">
+    <div>
       <div class="pb-5">
         <h3>Sort By</h3>
         <ul>
-          <li class="omp_headers-font"><%= link_to "Publish Date", pets_path(order: 'created_at'), class: "omp_filter"%></li>
-          <li class="omp_headers-font"><%= link_to "Cookies reward", pets_path(order: 'reward_per_day'), class: "omp_filter"%></li>
+          <li class="omp_headers-font omp_headers-font-hover"><%= link_to "Publish Date", pets_path(order: 'created_at'), class: "omp_filter"%></li>
+          <li class="omp_headers-font omp_headers-font-hover"><%= link_to "Cookies reward", pets_path(order: 'reward_per_day'), class: "omp_filter"%></li>
         </ul>
         </div>
         <div class>
         <h3>Filter</h3>
         <ul>
           <% Pet.get_species.each do |specie| %>
-            <li class="omp_headers-font"><%= link_to specie, pets_path(:species=> specie), class: "omp_filter"%></li>
+            <li class="omp_headers-font omp_headers-font-hover"><%= link_to specie, pets_path(:species=> specie), class: "omp_filter"%></li>
           <% end %>
         </ul>
       </div>
@@ -45,7 +45,7 @@
       <% end %>
     </div>
     <div class="container mt-0">
-      <p class="omp_headers-font"><%= @pets.count %> pets to love in $$Marseille.</p>
+      <p class="omp_headers-font"><%= @pets.count %> pets to love</p>
     </div>
 
     <div>
