@@ -12,10 +12,12 @@
 }
 
 .container {
+  position: relative;
   &:nth-child(2) {
     margin-top: 70px;
   }
 }
+
 body > .container:last-of-type {
   padding-bottom: 250px;
 }

@@ -82,11 +82,18 @@
           <% if @pet.user != current_user %>
             <h2 class="card-title" style="font-size: 1.5rem">You will get</h2>
           <% else %>
-            <h2 class="card-title" style="font-size: 1.5rem"><%= @sitting.user %> will get</h2>
+            <h2 class="card-title" style="font-size: 1.5rem"><%= @sitting.user.first_name %> will get</h2>
           <% end %>
           <p class="omp_reward omp_headers-font"><%= (@pet.reward_per_day * total_days).round %> <i class="fas fa-cookie"></i></p>
         </div>
       </div>
+      <div class="card mt-4">
+        <div class="card-body">
+          <%= link_to sitting_path(@sitting), class: "omp_light-peach btn btn-outline-danger", method: :delete, data: { confirm: "Are you sure?" } do %>
+            Cancel the sitting
+          <% end %>
+        </div>
+      </div>      
     </div>
   </div>
 </div>

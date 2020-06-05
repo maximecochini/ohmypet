@@ -12,7 +12,7 @@
     <h2>Loves you will sit for</h2>
   </div>
   <div class="omp_grid-2-3 omp_z-index-1 omp_p-relative">
-    <% @sittings.each do |sitting| %>
+    <% @sittings.order(created_at: :desc).each do |sitting| %>
       <div class="omp_card omp_card-2-3 d-flex flex-row align-items-center justify-content-between">
 
         <img src="<%= cl_image_path sitting.pet.photo.key %>" class="omp_card-avatar border" alt="">
@@ -45,12 +45,12 @@
 
         <img src="<%= cl_image_path sitting.pet.user.photo.key %>" class="omp_card-avatar border" alt="">
 
-        <div class="flex-grow-1 px-4">
+        <div class="flex-grow-1 pl-4">
           <div class="d-flex justify-content-between mb-1">
-            <span class="omp_owner-name omp_headers-font"><%= sitting.pet.user.first_name.capitalize %> <%= sitting.pet.user.last_name.capitalize %></span>
+            <span class="omp_owner-name omp_headers-font"><%= sitting.pet.user.first_name.capitalize %></span>
             <span class="omp_pet-likes"><i class="fas fa-heart"></i> 4.8</span>
           </div>
-          <span class="omp_sitting_dates omp_headers-font"><i class="fas fa-calendar"></i> <%= sitting.start_date.strftime('%a %d %b') %> - <%= sitting.end_date.strftime('%a %d %b') %></span>
+          <span class="omp_sitting_dates"><i class="fas fa-calendar"></i> <%= sitting.start_date.strftime('%d %b') %> - <%= sitting.end_date.strftime('%d %b') %></span>
         </div>
 
         <div class="nav-item omp_vl"></div>
@@ -73,7 +73,7 @@
     </svg>
   </div>
   <div class="omp_grid-2-3 omp_z-index-1 omp_p-relative">
-    <% @pets.order(:name).each do |pet| %>
+    <% @pets.order(created_at: :asc).each do |pet| %>
       <div class="omp_card omp_card-2-3 d-flex flex-row align-items-center justify-content-between">
 
         <img src="<%= cl_image_path pet.photo.key %>" class="omp_card-avatar border" alt="">
@@ -113,19 +113,19 @@
         <div class="omp_card omp_card-1-3 d-flex flex-row align-items-center justify-content-between">
           <img src="<%= cl_image_path sitting.user.photo.key %>" class="omp_card-avatar border" alt="">
           
-          <div class="flex-grow-1 px-4">
+          <div class="flex-grow-1 pl-4">
             <div class="d-flex justify-content-between mb-1">
-              <span class="omp_owner-name omp_headers-font"><%= sitting.user.first_name.capitalize %> <%= sitting.user.last_name.capitalize %></span>
+              <span class="omp_owner-name omp_headers-font"><%= sitting.user.first_name.capitalize %></span>
               <span class="omp_pet-likes"><i class="fas fa-heart"></i> 4.8</span>
             </div>
-            <span class="omp_sitting_dates omp_headers-font"><i class="fas fa-calendar"></i> <%= sitting.start_date.strftime('%a %d %b') %> - <%= sitting.end_date.strftime('%a %d %b') %></span>
+            <span class="omp_sitting_dates"><i class="fas fa-calendar"></i> <%= sitting.start_date.strftime('%d %b') %> - <%= sitting.end_date.strftime('%d %b') %></span>
           </div>
 
           <div class="nav-item omp_vl"></div>
 
           <div class="px-2">
-            <%= link_to sitting_path(sitting), class: "omp_light-peach omp_no-deco", method: :delete, data: { confirm: "Are you sure?" } do %>
-              <i class="omp_card-large-i fas fa-times"></i>
+            <%= link_to sitting_path(sitting), class: "omp_light-peach omp_no-deco" do %>
+              <i class="omp_card-large-i fas fa-list-ul"></i>
             <% end %>
           </div>
         </div>
