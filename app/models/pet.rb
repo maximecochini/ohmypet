@@ -9,7 +9,7 @@ class Pet < ApplicationRecord
   geocoded_by :address
   after_validation :geocode
 
-  SPECIES = ["dog", "cat", "rabbit", "donkey", "snake", "horse", "pig", "chimp", "llama"]
+  SPECIES = ["cat", "cow", "dog", "donkey", "goat", "horse", "lizard", "llama", "monkey", "pig", "rabbit", "snake"]
 
   belongs_to :user
   has_many :sittings, dependent: :destroy
